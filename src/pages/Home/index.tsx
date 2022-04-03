@@ -28,7 +28,6 @@ export default function Home() {
   const [optionSelected, setOptionSelected] = useState(INITIAL_SELECT_STATE);
   const [activePage, setActivePage] = useState(1);
 
-
   useEffect(() => {
     StoresService.getStores().then((res) =>
     setData(res.data.data)
