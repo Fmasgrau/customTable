@@ -1,3 +1,16 @@
+# Custom Table - Desktop version
+
+![image](https://user-images.githubusercontent.com/40182366/161443673-5c814ed5-001c-427f-b89a-4182d05e6420.png)
+
+
+This application is a custom data table built in react using typescript.
+
+You can see a live demo deployed in AWS EC2 t3a.nano
+
+[Live Demo!](http://3.235.42.66)
+
+**Do you want to run the project? Clone this and follow the instructions below.**
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
