@@ -1,11 +1,7 @@
-
-interface ISortByProps {
-  firstValue: string | number;
-  secondValue: string | number;
-
-}
-
-export const sortBy = (firstValue :string | number, secondValue :string | number): number => {
+export const sortBy = (
+  firstValue: string | number,
+  secondValue: string | number
+): number => {
   if (firstValue < secondValue) {
     return -1;
   }
