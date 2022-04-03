@@ -7,7 +7,7 @@ This application is a custom data table built in react using typescript.
 
 You can see a live demo deployed in AWS EC2 t3a.nano
 
-[Live Demo!]http://54.166.192.108:3000/
+[Live Demo!](http://54.166.192.108:3000/)
 
 **Do you want to run the project? Clone this and follow the instructions below.**
 
