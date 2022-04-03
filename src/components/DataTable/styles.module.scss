@@ -1,0 +1,15 @@
+.handleSort {
+  &:hover {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.handleSortNotAvailable {
+  &:hover {
+    background-color: red;
+    color: white;
+    cursor: not-allowed;
+  }
+}
