@@ -17,8 +17,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-**Before this you will need to run this command npx msw init public/ --save, this will setup your msw for mockups purposes. 
-In this project is just mocked the list of stores. You wont be able to filter o paginate but you will can see the urls in the console.
+**Before npm i, you will need to run this command `npx msw init public/ --save`, this will setup your msw for mockups purposes. 
+In this project is just mocked the list of stores. You wont be able to filter o paginate but you will can see the urls in the console.**
 
 In the project directory, you can run:
 
