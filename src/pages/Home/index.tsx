@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CustomSelect from "../../components/CustomSelect";
 import DataTable from "../../components/DataTable";
 import Filter from "../../components/Filter";
-import DummyData from "../../mocks/dummy-data/stores.json";
 import { StoresService } from "../../services/stores/service";
 import { sortBy } from "../../utils/sort";
 import {
@@ -69,7 +68,7 @@ export default function Home() {
     setActivePage(value);
     setSearchText({ ...searchText, page: value });
     StoresService.getStoresBy({ ...searchParams, page: value }).then(
-      (res) => res // TODO create a mockup for this
+      (res) => res // TODO create a mockup for this, is out of scope for this challenge
     );
   };
 
