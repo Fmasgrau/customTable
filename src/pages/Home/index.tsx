@@ -11,6 +11,8 @@ import {
   INITIAL_SEARCH_STATE,
   INITIAL_SELECT_STATE,
   OPTIONS,
+  PAGE_RANGE_DISPLAYED,
+  PAGINATION,
   TEXT_TRANSLATION,
 } from "./constants";
 
@@ -21,18 +23,29 @@ interface ISearchTextProps {
   name?: string;
 }
 
+interface ISortProps {
+  [key: string | number]: string | number;
+}
+
+interface IPagination{
+  rowsPerPage: number,
+  total: number
+}
+
 export default function Home() {
   const [searchText, setSearchText] =
     useState<ISearchTextProps>(INITIAL_SEARCH_STATE);
   const [data, setData] = useState<ISearchTextProps[]>([]);
+  const [pagination, setPagination] = useState<IPagination>({rowsPerPage: PAGINATION.rowsPerPage, total: PAGINATION.total});
   const [optionSelected, setOptionSelected] = useState(INITIAL_SELECT_STATE);
-  const [activePage, setActivePage] = useState(1);
+  const [activePage, setActivePage] = useState(PAGINATION.defaultPage);
 
   useEffect(() => {
-    StoresService.getStores().then((res) =>
-    setData(res.data.data)
-    );
-  }, [])
+    StoresService.getStores().then((res) => {
+      setData(res.data.data);
+      setPagination({ rowsPerPage: res.data.rowsPerPage, total :res.data.total });
+    });
+  }, []);
 
   const handleID = (event: any) => {
     const value = event.target.value;
@@ -55,8 +68,8 @@ export default function Home() {
   const handlePage = (value: number) => {
     setActivePage(value);
     setSearchText({ ...searchText, page: value });
-    StoresService.getStoresBy({ ...searchParams, page: value }).then((res) =>
-      res // TODO create a mockup for this
+    StoresService.getStoresBy({ ...searchParams, page: value }).then(
+      (res) => res // TODO create a mockup for this
     );
   };
 
@@ -70,17 +83,15 @@ export default function Home() {
     {}
   );
 
-  interface Prueba {
-    [key: string | number]: string | number;
-  }
-
   const handleClick = () => {
     StoresService.getStoresBy(searchParams).then((res) => res);
   };
 
   const handleSort = (id: string) => {
     id = id.toLocaleLowerCase();
-    const newOrder = data.sort((a: Prueba, b: Prueba) => sortBy(a[id], b[id]));
+    const newOrder = data.sort((a: ISortProps, b: ISortProps) =>
+      sortBy(a[id], b[id])
+    );
     setData([...newOrder]);
   };
 
@@ -128,9 +139,9 @@ export default function Home() {
           handleSort={handleSort}
           activePage={activePage}
           setActivePage={handlePage}
-          itemsCountPerPage={DummyData.rowsPerPage}
-          totalItemsCount={DummyData.total}
-          pageRangeDisplayed={10}
+          itemsCountPerPage={pagination.rowsPerPage}
+          totalItemsCount={pagination.total}
+          pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
         />
       </div>
     </div>

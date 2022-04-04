@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import Pagination from "react-js-pagination";
+import { TEXT_TRANSLATION } from "../../pages/Home/constants";
+import { arrayHasLength } from "../../utils/array";
 
 interface IHeaderTitleProps {
   id: string;
@@ -57,14 +59,14 @@ export default function DataTable({
   ));
   return (
     <div className="container-fluid px-4">
-      {headerTitle?.length > 0 ? (
+      {arrayHasLength(headerTitle)? (
         <>
           <div className="row">
             <table className="table table-bordered px-1">
               <thead>
                 <tr>{headerRow}</tr>
               </thead>
-              <tbody>{cellsData?.length > 0 ? cellsRows : <div>No hay datos para mostrar</div>}</tbody>
+              <tbody>{arrayHasLength(cellsData) ? cellsRows : <div>{TEXT_TRANSLATION.es.dataTable.noData}</div>}</tbody>
             </table>
           </div>
           <div className="row justify-content-center">
@@ -78,11 +80,11 @@ export default function DataTable({
               linkClass="page-link"
               innerClass="d-flex pl-0 list-unstyled justify-content-center"
             />
-            <span>Filas por pagina: {itemsCountPerPage}</span>
+            <span>{TEXT_TRANSLATION.es.dataTable.rowsPerPage} {itemsCountPerPage}</span>
           </div>
         </>
       ) : (
-        <div>No hay datos para mostrar</div>
+        <div>{TEXT_TRANSLATION.es.dataTable.noData}</div>
       )}
     </div>
   );

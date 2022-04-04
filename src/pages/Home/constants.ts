@@ -31,6 +31,10 @@ export const FILTERS = {
 export const TEXT_TRANSLATION = {
   es: {
     button: "Filtrar",
+    dataTable: {
+      noData: 'No hay datos para mostrar',
+      rowsPerPage: 'Filas por pagina:'
+    }
   },
 };
 
@@ -42,3 +46,9 @@ export const INITIAL_SEARCH_STATE = {
   page: 1,
 };
 export const INITIAL_SELECT_STATE = "Todos";
+export const PAGE_RANGE_DISPLAYED = 10;
+export const PAGINATION = {
+  defaultPage : 1,
+  rowsPerPage: 0,
+  total: 0
+}

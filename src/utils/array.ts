@@ -1,0 +1,1 @@
+export const arrayHasLength = (array : any[]) => array?.length > 0
