@@ -9,14 +9,14 @@ interface IHeaderTitleProps {
 }
 
 interface DataTableProps {
-  headerTitle?: IHeaderTitleProps[];
-  cellsData?: any[];
+  headerTitle: IHeaderTitleProps[];
+  cellsData: any[];
   handleSort: (id: string) => void;
-  activePage: number,
-  setActivePage: (number: number) => void,
-  itemsCountPerPage: number,
-  totalItemsCount: number,
-  pageRangeDisplayed: number
+  activePage: number;
+  setActivePage: (number: number) => void;
+  itemsCountPerPage: number;
+  totalItemsCount: number;
+  pageRangeDisplayed: number;
 }
 
 export default function DataTable({
@@ -27,7 +27,7 @@ export default function DataTable({
   setActivePage,
   itemsCountPerPage,
   totalItemsCount,
-  pageRangeDisplayed
+  pageRangeDisplayed,
 }: DataTableProps) {
   const handleSortById = (event: any) => {
     handleSort(event.target.id);
@@ -57,27 +57,33 @@ export default function DataTable({
   ));
   return (
     <div className="container-fluid px-4">
-      <div className="row">
-        <table className="table table-bordered px-1">
-          <thead>
-            <tr>{headerRow}</tr>
-          </thead>
-          <tbody>{cellsRows}</tbody>
-        </table>
-      </div>
-      <div className="row justify-content-center">
-        <Pagination
-          activePage={activePage}
-          itemsCountPerPage={itemsCountPerPage}
-          totalItemsCount={totalItemsCount}
-          pageRangeDisplayed={pageRangeDisplayed}
-          onChange={setActivePage}
-          itemClass="page-item"
-          linkClass="page-link"
-          innerClass="d-flex pl-0 list-unstyled justify-content-center"
-        />
-        <span>Filas por pagina: {itemsCountPerPage}</span>
-      </div>
+      {headerTitle?.length > 0 ? (
+        <>
+          <div className="row">
+            <table className="table table-bordered px-1">
+              <thead>
+                <tr>{headerRow}</tr>
+              </thead>
+              <tbody>{cellsData?.length > 0 ? cellsRows : <div>No hay datos para mostrar</div>}</tbody>
+            </table>
+          </div>
+          <div className="row justify-content-center">
+            <Pagination
+              activePage={activePage}
+              itemsCountPerPage={itemsCountPerPage}
+              totalItemsCount={totalItemsCount}
+              pageRangeDisplayed={pageRangeDisplayed}
+              onChange={setActivePage}
+              itemClass="page-item"
+              linkClass="page-link"
+              innerClass="d-flex pl-0 list-unstyled justify-content-center"
+            />
+            <span>Filas por pagina: {itemsCountPerPage}</span>
+          </div>
+        </>
+      ) : (
+        <div>No hay datos para mostrar</div>
+      )}
     </div>
   );
 }

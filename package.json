@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@types/react-js-pagination": "^3.0.4",
+    "jest-watch-typeahead": "^0.6.5",
     "msw": "^0.39.2"
   },
   "msw": {
